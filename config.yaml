@@ -1,0 +1,12 @@
+project:
+  name: grad-meeting-agent
+llm:
+  openai_model: gpt-4o-mini
+  ollama_model: qwen2.5:3b
+  ollama_url: http://localhost:11434/api/generate
+report:
+  language: zh-CN
+  days: 7
+ppt_template: templates/academic_clean.yaml
+paper_source_mode: pdf_first
+use_paper_notes_as_sources: false

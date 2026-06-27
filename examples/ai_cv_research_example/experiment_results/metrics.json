@@ -1,0 +1,15 @@
+{
+  "restoration": {
+    "psnr_before": 23.9,
+    "psnr_after": 27.4,
+    "ssim_before": 0.764,
+    "ssim_after": 0.835
+  },
+  "detection": {
+    "recall_before": 0.672,
+    "recall_after": 0.724,
+    "continuity_before": 0.701,
+    "continuity_after": 0.759
+  },
+  "issue": "low light scenes are still unstable"
+}
