@@ -14,9 +14,66 @@
 
 组会前最痛苦的往往不是“做 PPT”，而是不知道这一周到底能讲什么、证据在哪里、哪些结论还不能说太满。
 
-所以这个项目更像是“给 AI 的组会准备说明书”：你可以把 [skill.md](skill.md) 或 [prompts/](prompts/) 发给 ChatGPT / Claude / Codex / Cursor，让 AI 按固定流程帮你整理材料、提炼主线、标出风险，再生成 `Research Meeting Pack`。
+所以这个项目更像是“给 AI 的组会准备说明书”：你可以让 ChatGPT / Claude / Codex / Cursor 按 [skill.md](skill.md) 和 [prompts/](prompts/) 工作，先整理材料、提炼主线、标出风险，再生成 `Research Meeting Pack`。
 
 PPT 是 optional，核心是 **research thinking organization**。
+
+## ⚡ 一句话调用
+
+如果你只是想快速试用，不需要先安装依赖，也不需要先运行 Python。  
+把下面这句话复制给 ChatGPT / Claude / Codex / Cursor，就可以开始使用这个 skill。
+
+### ChatGPT / Claude
+
+```text
+请把这个 GitHub 仓库当作研究生组会准备 skill 使用：
+https://github.com/920961270/Grad_Meeting_Agent
+
+请根据 skill.md 的流程，帮我整理接下来提供的论文、实验结果、图像和笔记，先生成一份 Research Meeting Pack。
+如果我后续需要展示材料，再基于 Meeting Pack 继续生成 slide outline。
+```
+
+### Codex / Cursor
+
+如果你已经 clone 了这个仓库，并且材料放在 `input/` 里：
+
+```text
+请按本仓库的 AGENTS.md 和 skill.md，整理 input/ 里的材料，先生成 Research Meeting Pack。
+如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
+```
+
+也可以直接给 Codex / Cursor 仓库链接：
+
+```text
+请读取这个仓库，并把它当作 AI-native Research Meeting Skill 使用：
+https://github.com/920961270/Grad_Meeting_Agent
+
+请根据 AGENTS.md 和 skill.md 的流程，帮我整理组会材料，先生成 Research Meeting Pack。
+如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
+```
+
+## 🧭 推荐使用顺序
+
+1. 把论文、实验结果、图像、笔记或 git 进展交给 AI。
+2. 让 AI 按 `skill.md` 先生成 `Research Meeting Pack`。
+3. 先检查主线、证据链、缺口和讨论问题是否合理。
+4. 如果需要组会展示，再继续生成 `Slide Outline` 或可编辑 PPT 骨架。
+
+这套顺序的重点是：先整理 research thinking，再生成 slides。
+
+## 📝 懒人复制版
+
+不想组织长 prompt 的话，直接复制这两个文件之一：
+
+- 中文：[prompts/quick_start_zh.md](prompts/quick_start_zh.md)
+- English：[prompts/quick_start_en.md](prompts/quick_start_en.md)
+
+理想路径：
+
+- Codex / Cursor 用户：一句话调用 `AGENTS.md + skill.md`
+- ChatGPT / Claude 用户：复制 `quick_start_zh.md`
+- 深度用户：按 [prompts/](prompts/) 分步骤使用
+- 自动化用户：可选运行 CLI
 
 ## ✨ 它能帮你做什么？
 
@@ -60,22 +117,11 @@ PPT 是 optional，核心是 **research thinking organization**。
 
 ## 🚀 三种使用方式
 
-### 方式 A：复制 skill.md 给 ChatGPT / Claude
+### 方式 A：ChatGPT / Claude
 
-适合你已经在 ChatGPT / Claude 里整理材料的情况。
+最短方式：复制 [prompts/quick_start_zh.md](prompts/quick_start_zh.md)，然后继续粘贴你的论文摘录、实验结果、图像说明、notes 或 progress。它会引导 AI 先生成 `Research Meeting Pack`，后续再按需生成展示材料。
 
-```text
-请使用下面这个 Research Meeting Skill 帮我准备研究生组会。
-请先扫描材料，再提炼本周组会主线，最后生成 Research Meeting Pack。
-不要把不确定内容写成强结论。
-不要把导师 Q&A 放进公开 PPT。
-
-<paste skill.md here>
-```
-
-然后把论文摘录、实验结果、图像说明、notes 或 progress 一起发给 AI。
-
-你也可以分步骤复制这些 prompt：
+需要更精细控制时，可以分步骤复制：
 
 - [01_material_scan.md](prompts/01_material_scan.md)
 - [02_research_thread.md](prompts/02_research_thread.md)
@@ -85,15 +131,13 @@ PPT 是 optional，核心是 **research thinking organization**。
 - [06_slide_outline.md](prompts/06_slide_outline.md)
 - [07_supervisor_qa.md](prompts/07_supervisor_qa.md)
 
-### 方式 B：让 Codex / Cursor 读取整个仓库
+### 方式 B：Codex / Cursor
 
 适合你的材料已经放在项目目录里，希望 AI 直接读取文件并整理。
 
 ```text
-Read this repository as an AI-native Research Meeting Skill.
-Use skill.md, prompts/ and templates/ to help me prepare a meeting-ready evidence pack.
-Scan my input materials, infer the research thread, generate paper cards, experiment insights, gaps, discussion questions, and optional slide outline.
-Do not treat this as a CLI-first project.
+请按本仓库的 AGENTS.md 和 skill.md，整理 input/ 里的材料，先生成 Research Meeting Pack。
+如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
 ```
 
 推荐材料目录：
@@ -126,7 +170,7 @@ output/
 └── agent_state.json
 ```
 
-生成 PPT：
+需要展示材料时，可以继续生成 PPT 骨架：
 
 ```bash
 python main.py --input input --output output --backend rule --with-slides
@@ -165,6 +209,7 @@ python main.py --input input --output output --backend rule --all
 
 ```text
 Grad_Meeting_Agent/
+├── AGENTS.md
 ├── skill.md
 ├── prompts/
 ├── templates/
@@ -177,8 +222,9 @@ Grad_Meeting_Agent/
 └── README.md
 ```
 
+- `AGENTS.md`：给 Codex / Cursor / Claude Code 等 AI coding assistant 的项目级指令
 - `skill.md`：主 workflow，适合直接复制给 AI
-- `prompts/`：分步骤 prompt，适合逐步整理材料
+- `prompts/`：分步骤 prompt 和 quick start prompt
 - `templates/`：Research Meeting Pack 模板和材料清单
 - `examples/`：示例材料和使用说明
 - `pic/`：README 图片
@@ -206,8 +252,10 @@ Grad_Meeting_Agent/
 ## 🛣️ Roadmap
 
 - [x] AI-native skill workflow
+- [x] `AGENTS.md` 一句话调用入口
 - [x] `skill.md`
 - [x] `prompts/`
+- [x] quick start prompts
 - [x] meeting pack template
 - [x] optional CLI automation
 - [x] README workflow diagram
