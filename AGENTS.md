@@ -4,11 +4,20 @@ This repository is an AI-native Research Meeting Skill for preparing graduate re
 
 Do not treat this as a CLI-first project. The Python scripts are optional automation only.
 
-When a user provides research materials, default to reading:
+Default reading order:
 
+- `README.md`
 - `skill.md`
 - `prompts/`
 - `templates/`
+
+When the user asks to organize meeting materials:
+
+- First look for a `materials/` directory in the current workspace.
+- If there is no `materials/`, then check `input/`.
+- Do not assume you can access arbitrary local folders on the user's computer.
+- If no materials are available in the workspace, ask the user to place materials in `materials/` or upload a zip archive such as `meeting_materials.zip`.
+- Do not ask the user to upload files one by one if a workspace directory or zip upload can be used.
 
 Primary goal:
 
@@ -24,9 +33,9 @@ Behavior rules:
 - Keep `Supervisor Q&A` as personal preparation material. Do not put it into public PPT content.
 - Prefer meeting-ready research language over software documentation.
 
-If the user asks for the shortest invocation, tell them:
+Shortest coding-agent invocation:
 
 ```text
-请按本仓库的 AGENTS.md 和 skill.md，整理 input/ 里的材料，先生成 Research Meeting Pack。
+请按本仓库的 AGENTS.md 和 skill.md，整理 materials/ 里的材料；如果没有 materials/，再检查 input/。先生成 Research Meeting Pack。
 如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
 ```

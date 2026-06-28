@@ -1,5 +1,8 @@
-Please use this repository as a graduate research meeting preparation skill.
-Read skill.md and create a Research Meeting Pack from the papers, experiment results, figures, notes, and commits I provide.
-Include the research thread, paper cards, experiment insights, evidence gaps, meeting agenda, discussion questions, and personal prep Q&A.
-If I later need presentation materials, continue from the Meeting Pack to create a slide outline or editable PPT skeleton.
-Do not write software documentation, and do not turn uncertain evidence into strong conclusions.
+Chat window: Please use this GitHub repository as a graduate research meeting preparation skill:
+https://github.com/920961270/Grad_Meeting_Agent
+Core workflow: https://github.com/920961270/Grad_Meeting_Agent/blob/main/skill.md
+I will upload meeting_materials.zip. Read the papers, experiment results, figures, and notes inside it, then create a Research Meeting Pack first.
+If I later need presentation materials, continue from the Meeting Pack to create a slide outline.
+
+Codex / Cursor: Follow AGENTS.md and skill.md, scan the current workspace's materials/ directory first, then input/ if materials/ does not exist.
+Create the Research Meeting Pack first. If presentation materials are needed later, continue with a slide outline or PPT skeleton.

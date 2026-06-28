@@ -14,56 +14,102 @@
 
 组会前最痛苦的往往不是“做 PPT”，而是不知道这一周到底能讲什么、证据在哪里、哪些结论还不能说太满。
 
-所以这个项目更像是“给 AI 的组会准备说明书”：你可以让 ChatGPT / Claude / Codex / Cursor 按 [skill.md](skill.md) 和 [prompts/](prompts/) 工作，先整理材料、提炼主线、标出风险，再生成 `Research Meeting Pack`。
+所以这个项目更像是“给 AI 的组会准备说明书”：GitHub 仓库负责告诉 AI **怎么整理**，你的研究材料负责提供 **要整理什么**。AI 先按 [skill.md](skill.md) 整理 research thinking，生成 `Research Meeting Pack`；如果后续需要展示材料，再继续生成 `slide outline` 或可编辑 PPT 骨架。
 
-PPT 是 optional，核心是 **research thinking organization**。
+PPT 是 optional presentation layer，核心是 **research thinking organization**。
 
 ## ⚡ 一句话调用
 
 如果你只是想快速试用，不需要先安装依赖，也不需要先运行 Python。  
-把下面这句话复制给 ChatGPT / Claude / Codex / Cursor，就可以开始使用这个 skill。
+把下面的文字复制给 ChatGPT / Claude / Codex / Cursor，然后提供你的组会材料即可。
 
 ### ChatGPT / Claude
+
+适合普通聊天窗口使用。推荐把资料文件夹压缩成 `meeting_materials.zip` 后上传，而不是一个个上传文件。
 
 ```text
 请把这个 GitHub 仓库当作研究生组会准备 skill 使用：
 https://github.com/920961270/Grad_Meeting_Agent
 
-请根据 skill.md 的流程，帮我整理接下来提供的论文、实验结果、图像和笔记，先生成一份 Research Meeting Pack。
-如果我后续需要展示材料，再基于 Meeting Pack 继续生成 slide outline。
+核心 workflow 在这里：
+https://github.com/920961270/Grad_Meeting_Agent/blob/main/skill.md
+
+我会上传一个 meeting_materials.zip。请根据 skill.md 的流程读取压缩包里的论文、实验结果、图像和笔记，先生成 Research Meeting Pack。
+如果后续需要展示材料，再基于 Meeting Pack 继续生成 slide outline。
 ```
 
 ### Codex / Cursor
 
-如果你已经 clone 了这个仓库，并且材料放在 `input/` 里：
+适合已经在本地或云端打开项目工作区的用户。请把资料放进当前工作区的 `materials/` 或 `input/` 目录。
 
 ```text
-请按本仓库的 AGENTS.md 和 skill.md，整理 input/ 里的材料，先生成 Research Meeting Pack。
-如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
-```
-
-也可以直接给 Codex / Cursor 仓库链接：
-
-```text
-请读取这个仓库，并把它当作 AI-native Research Meeting Skill 使用：
+请把这个仓库当作 AI-native Research Meeting Skill 使用：
 https://github.com/920961270/Grad_Meeting_Agent
 
-请根据 AGENTS.md 和 skill.md 的流程，帮我整理组会材料，先生成 Research Meeting Pack。
-如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
+请优先遵循：
+https://github.com/920961270/Grad_Meeting_Agent/blob/main/AGENTS.md
+https://github.com/920961270/Grad_Meeting_Agent/blob/main/skill.md
+
+请扫描当前工作区的 materials/ 目录；如果没有 materials/，再检查 input/。
+先生成 Research Meeting Pack。如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
 ```
+
+## 📦 材料怎么给 AI？
+
+GitHub 链接只能让 AI 读取这个 skill 的说明和 workflow，比如 README、`skill.md`、`AGENTS.md`、`prompts/` 和 `templates/`。它不能自动读取你电脑里的本地资料文件夹。
+
+用户研究材料需要通过 AI 能访问到的方式提供：
+
+1. ChatGPT / Claude：推荐上传一个 `meeting_materials.zip`。
+2. Codex / Cursor：推荐把材料放进当前工作区的 `materials/` 或 `input/`。
+3. 如果只有一两个文件，也可以单独上传；但资料多时不推荐一个个传。
+
+推荐 zip 结构：
+
+```text
+meeting_materials.zip
+├── papers/
+├── experiment_results/
+├── figures/
+├── notes.md
+└── progress.md
+```
+
+推荐工作区结构：
+
+```text
+materials/
+├── papers/
+├── experiment_results/
+├── figures/
+├── notes.md
+└── progress.md
+```
+
+材料用途：
+
+- `papers/`：论文 PDF 或论文摘录
+- `experiment_results/`：CSV、JSON、metrics、实验表格
+- `figures/`：结果图、对比图、失败案例截图
+- `notes.md`：零散想法、老师反馈、实验观察
+- `progress.md`：阶段性进展记录
+
+用户不需要一个个上传文件。普通聊天窗口推荐上传 `meeting_materials.zip`；Codex / Cursor 推荐把材料放进当前工作区的 `materials/` 目录。
 
 ## 🧭 推荐使用顺序
 
-1. 把论文、实验结果、图像、笔记或 git 进展交给 AI。
-2. 让 AI 按 `skill.md` 先生成 `Research Meeting Pack`。
-3. 先检查主线、证据链、缺口和讨论问题是否合理。
-4. 如果需要组会展示，再继续生成 `Slide Outline` 或可编辑 PPT 骨架。
+1. 准备材料：论文、实验结果、图像、笔记、git 进展等。
+2. 如果在 ChatGPT / Claude 中使用，把材料打包成 `meeting_materials.zip` 上传。
+3. 如果在 Codex / Cursor 中使用，把材料放进当前工作区的 `materials/` 或 `input/`。
+4. 让 AI 按 `skill.md` 先生成 `Research Meeting Pack`。
+5. 先检查主线、证据链、缺口和讨论问题是否合理。
+6. 如果需要组会展示，再继续生成 `slide outline` 或可编辑 PPT 骨架。
 
 这套顺序的重点是：先整理 research thinking，再生成 slides。
 
 ## 📝 懒人复制版
 
-不想组织长 prompt 的话，直接复制这两个文件之一：
+不想自己写 prompt 的话，可以直接复制：
 
 - 中文：[prompts/quick_start_zh.md](prompts/quick_start_zh.md)
 - English：[prompts/quick_start_en.md](prompts/quick_start_en.md)
@@ -71,7 +117,7 @@ https://github.com/920961270/Grad_Meeting_Agent
 理想路径：
 
 - Codex / Cursor 用户：一句话调用 `AGENTS.md + skill.md`
-- ChatGPT / Claude 用户：复制 `quick_start_zh.md`
+- ChatGPT / Claude 用户：复制 `quick_start_zh.md`，再上传 `meeting_materials.zip`
 - 深度用户：按 [prompts/](prompts/) 分步骤使用
 - 自动化用户：可选运行 CLI
 
@@ -97,7 +143,7 @@ https://github.com/920961270/Grad_Meeting_Agent
 1. 先扫描材料，判断有哪些证据。
 2. 再提炼本周可以汇报的研究主线。
 3. 然后生成论文卡片、实验洞察、风险缺口。
-4. 最后再决定哪些内容适合进入 PPT。
+4. 最后再决定哪些内容适合进入展示材料。
 
 也就是说，它不是“另一个 prompt”，而是一套让 AI 更像科研助理一样工作的组会准备流程。
 
@@ -119,7 +165,7 @@ https://github.com/920961270/Grad_Meeting_Agent
 
 ### 方式 A：ChatGPT / Claude
 
-最短方式：复制 [prompts/quick_start_zh.md](prompts/quick_start_zh.md)，然后继续粘贴你的论文摘录、实验结果、图像说明、notes 或 progress。它会引导 AI 先生成 `Research Meeting Pack`，后续再按需生成展示材料。
+最短方式：复制 [prompts/quick_start_zh.md](prompts/quick_start_zh.md)，再上传 `meeting_materials.zip`。它会引导 AI 先生成 `Research Meeting Pack`，后续再按需生成展示材料。
 
 需要更精细控制时，可以分步骤复制：
 
@@ -136,18 +182,17 @@ https://github.com/920961270/Grad_Meeting_Agent
 适合你的材料已经放在项目目录里，希望 AI 直接读取文件并整理。
 
 ```text
-请按本仓库的 AGENTS.md 和 skill.md，整理 input/ 里的材料，先生成 Research Meeting Pack。
+请按本仓库的 AGENTS.md 和 skill.md，整理 materials/ 里的材料；如果没有 materials/，再检查 input/。先生成 Research Meeting Pack。
 如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
 ```
 
 推荐材料目录：
 
 ```text
-input/
+materials/
 ├── papers/
 ├── experiment_results/
 ├── figures/
-├── paper_notes.md
 ├── notes.md
 └── progress.md
 ```
@@ -259,6 +304,7 @@ Grad_Meeting_Agent/
 - [x] meeting pack template
 - [x] optional CLI automation
 - [x] README workflow diagram
+- [x] zip / workspace materials workflow
 - [ ] 更好的 examples
 - [ ] 中文/英文双语模板
 - [ ] 更强的 paper grounded extraction
