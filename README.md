@@ -128,6 +128,8 @@ materials/
 - 生成论文卡片 `Paper Cards`
 - 分析实验结果 `Experiment Insights`
 - 标出证据缺口 `Evidence Gap`
+- 给核心结论标注证据强度 `Claim Strength`
+- 用领域视角检查指标冲突 `Domain Lens`
 - 生成核心文档 `Research Meeting Pack`
 - 给出可选 PPT 大纲 `Slide Outline`
 - 准备导师可能追问 `Supervisor Q&A`
@@ -146,6 +148,26 @@ materials/
 4. 最后再决定哪些内容适合进入展示材料。
 
 也就是说，它不是“另一个 prompt”，而是一套让 AI 更像科研助理一样工作的组会准备流程。
+
+### 🧠 为什么要标注证据强度？
+
+组会里最容易出问题的地方，不是“没有结果”，而是把初步现象讲成了确定结论。
+
+所以这个 skill 会要求 AI 给核心结论标注 `Strong / Moderate / Weak / Insufficient`，并说明：证据来自哪里、有没有反例或冲突、需要人工确认什么、下一步怎么验证。
+
+这样做的目的不是保守到不敢汇报，而是让你更清楚：哪些内容可以重点讲，哪些内容应该作为假设或待验证问题讲。
+
+### 🧩 Domain Lens
+
+不同方向不能用同一套泛泛标准看结果。比如：
+
+- CV / 视频增强：PSNR、SSIM 提升，不一定代表检测稳定性更好。
+- Robotics / Control：平均误差下降，也要看中断率、控制延迟和扰动鲁棒性。
+- Education / Learning Analytics：学习时长增加，不等于学习效果提升。
+- HCI / AI Product：任务时间减少，也要看错误严重度、信任和隐私风险。
+- Materials / Engineering：最高强度或硬度，不一定是最佳工艺，还要看延展性、组织结构和重复样本。
+
+对应规则在 [prompts/domain_lenses.md](prompts/domain_lenses.md) 里。材料方向明确时，AI 会先用相应 lens 判断证据；方向不明确时，则使用通用研究证据链。
 
 ## 🗂️ 推荐输入材料
 
@@ -176,13 +198,14 @@ materials/
 - [05_meeting_pack.md](prompts/05_meeting_pack.md)
 - [06_slide_outline.md](prompts/06_slide_outline.md)
 - [07_supervisor_qa.md](prompts/07_supervisor_qa.md)
+- [domain_lenses.md](prompts/domain_lenses.md)
 
 ### 方式 B：Codex / Cursor
 
 适合你的材料已经放在项目目录里，希望 AI 直接读取文件并整理。
 
 ```text
-请按本仓库的 AGENTS.md 和 skill.md，整理 materials/ 里的材料；如果没有 materials/，再检查 input/。先生成 Research Meeting Pack。
+请按本仓库的 AGENTS.md 和 skill.md，整理 materials/ 里的材料；如果没有 materials/，再检查 input/。先生成 Research Meeting Pack，并标注核心结论的证据强度与 Evidence Map。
 如果后续需要展示材料，再基于 Meeting Pack 生成 slide outline 或可编辑 PPT 骨架。
 ```
 
@@ -270,7 +293,7 @@ Grad_Meeting_Agent/
 - `AGENTS.md`：给 Codex / Cursor / Claude Code 等 AI coding assistant 的项目级指令
 - `skill.md`：主 workflow，适合直接复制给 AI
 - `prompts/`：分步骤 prompt 和 quick start prompt
-- `templates/`：Research Meeting Pack 模板和材料清单
+- `templates/`：Research Meeting Pack、Evidence Map、材料清单和导师问题库
 - `examples/`：示例材料和使用说明
 - `pic/`：README 图片
 - `src/` 和 `main.py`：可选本地自动化
@@ -281,7 +304,7 @@ Grad_Meeting_Agent/
 2. `Research Thread`：提炼本周可汇报主线
 3. `Paper Cards`：生成论文卡片
 4. `Experiment Insights`：解释实验结果
-5. `Evidence Gap`：指出缺口和风险
+5. `Evidence Gap`：指出缺口、反例、证据强度和风险
 6. `Meeting Pack`：生成组会准备包
 7. `Optional Slide Outline`：生成可选 PPT 结构
 8. `Supervisor Q&A`：生成个人准备问题
@@ -305,6 +328,8 @@ Grad_Meeting_Agent/
 - [x] optional CLI automation
 - [x] README workflow diagram
 - [x] zip / workspace materials workflow
+- [x] Claim Strength / Evidence Map
+- [x] Domain Lens prompts
 - [ ] 更好的 examples
 - [ ] 中文/英文双语模板
 - [ ] 更强的 paper grounded extraction

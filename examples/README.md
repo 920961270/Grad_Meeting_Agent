@@ -54,7 +54,18 @@ Current evidence suggests the main question is whether enhancement improves both
 - PSNR/SSIM can support visual-quality claims.
 - Recall/Continuity should be used for downstream-task claims.
 - Failure cases are needed to explain where improvement does not hold.
+
+## 5. Evidence Map with Claim Strength
+| Claim / 结论 | Supporting Evidence / 支持证据 | Counter-evidence / 反例或冲突 | Strength | Manual Confirmation | Next Action |
+|---|---|---|---|---|---|
+| Enhancement may improve visual quality in current samples. | PSNR/SSIM metrics, before-after figures | Current materials may not cover enough scenes. | Moderate | Check scene diversity and failure cases. | Run evaluation on more low-light and motion-blur scenes. |
 ```
+
+## Synthetic Case Policy
+
+`test_outputs/` may contain generated evaluation results. Do not copy those generated packs into examples as if they were source materials.
+
+If synthetic cases are added later, keep only the raw `materials/` for each case under `examples/synthetic_cases/`, and avoid committing generated outputs.
 
 ## What Belongs In Slides
 

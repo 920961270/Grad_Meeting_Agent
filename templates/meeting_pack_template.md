@@ -8,9 +8,13 @@
 
 ## 4. Experiment Insights
 
-## 5. Evidence Map
+## 5. Evidence Map with Claim Strength
 
-## 6. Gaps & Risks
+| Claim / 结论 | Supporting Evidence / 支持证据 | Counter-evidence / 反例或冲突 | Strength | Manual Confirmation | Next Action |
+|---|---|---|---|---|---|
+|  |  |  | Strong / Moderate / Weak / Insufficient |  |  |
+
+## 6. Counter-evidence & Gaps
 
 ## 7. Meeting Agenda
 

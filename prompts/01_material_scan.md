@@ -10,9 +10,11 @@ Tasks:
 
 1. Identify which materials are available.
 2. For each material, explain what kind of evidence it can support.
-3. Separate strong evidence from weak or incomplete evidence.
-4. Identify missing materials that would make the meeting stronger.
-5. Do not expose tool-like or automation details.
+3. Infer the likely research domain or method type.
+4. Suggest which domain lens from `prompts/domain_lenses.md` should be used, if any.
+5. Separate strong evidence from weak or incomplete evidence.
+6. Identify missing materials that would make the meeting stronger.
+7. Do not expose tool-like or automation details.
 
 Output format:
 
@@ -23,6 +25,9 @@ Output format:
 - ...
 
 ## What Each Material Can Support
+- ...
+
+## Likely Domain Lens
 - ...
 
 ## Weak or Incomplete Evidence
@@ -37,3 +42,4 @@ Important:
 - Do not ask me to fill a template.
 - If progress notes are missing, infer what can be reported from the available materials.
 - Use cautious research language.
+- Do not force a domain label if the materials are too mixed or unclear.
